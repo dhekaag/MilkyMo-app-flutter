@@ -1,0 +1,39 @@
+name: milkymo
+version: 1.0.0+1
+publish_to: none
+description: MilkyMo app using flutter. This is for milk collection center in
+  digital recording of milk weighing results.
+environment:
+  sdk: ">=3.1.2 <4.0.0"
+
+dependencies:
+  cupertino_icons: ^1.0.2
+  flutter:
+    sdk: flutter
+  flutter_native_splash: ^2.3.7
+  flutter_screenutil: ^5.9.0
+  get: 4.6.6
+  iconsax: ^0.0.8
+
+dev_dependencies:
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
