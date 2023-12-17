@@ -5,4 +5,5 @@ const Color tBackgroundColor = Color(0xffF1F6F9);
 Color tHintColor = Colors.black.withOpacity(0.4);
 
 const Color tWhiteColor = Colors.white;
-const Color tBlackColor = Colors.black;
+const Color tBlackColor = Color(0xFF152C2A);
+const Color tGreenColor = Color(0xFF3FCF45);

@@ -6,29 +6,31 @@ import '../controllers/login_controller.dart';
 
 class LoginView extends GetView<LoginController> {
   const LoginView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
-        backgroundColor: const Color(0xff00A9FF),
-        body: SingleChildScrollView(
-          physics: const ClampingScrollPhysics(),
-          child: SizedBox(
-            width: size.width.w,
-            height: size.height.h,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  padding: EdgeInsets.only(top: 150.r),
-                  width: 150.w,
-                  alignment: Alignment.center,
-                  child: Image.asset("assets/images/milkymo_logo.png"),
-                ),
-                LoginCardWidget(controller: controller)
-              ],
-            ),
+      backgroundColor: const Color(0xff00A9FF),
+      body: SizedBox(
+        width: size.width.w,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(height: 120.h),
+              Container(
+                width: 150.w,
+                alignment: Alignment.center,
+                child: Image.asset("assets/images/milkymo_logo.png"),
+              ),
+              SizedBox(height: 60.h),
+              LoginCardWidget(controller: controller),
+            ],
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
