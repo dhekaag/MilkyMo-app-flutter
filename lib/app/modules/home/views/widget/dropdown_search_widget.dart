@@ -1,4 +1,3 @@
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
@@ -6,7 +5,7 @@ import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
 
-final controller = HomeController.instance;
+final _controller = HomeController.instance;
 
 class CustomDropDownWidget extends StatelessWidget {
   const CustomDropDownWidget({super.key});
@@ -43,7 +42,7 @@ class CustomDropDownWidget extends StatelessWidget {
                   SizedBox(
                     width: 50.w,
                     child: Text(
-                      controller.selectedDropDownValue!.value,
+                      _controller.selectedDropDownValue!.value,
                       textAlign: TextAlign.justify,
                       style: TextStyle(
                         color: Colors.black.withOpacity(0.6),
@@ -78,7 +77,7 @@ class ListItems extends StatelessWidget {
         // * 1st menu option
         InkWell(
           onTap: () {
-            controller.selectedDropDownValue?.value = "Pagi";
+            _controller.selectedDropDownValue?.value = "Pagi";
             Get.back();
           },
           child: Container(
@@ -102,7 +101,7 @@ class ListItems extends StatelessWidget {
         // * 2nd menu option
         InkWell(
           onTap: () {
-            controller.selectedDropDownValue?.value = "Sore";
+            _controller.selectedDropDownValue?.value = "Sore";
             Get.back();
           },
           child: Container(
@@ -125,7 +124,7 @@ class ListItems extends StatelessWidget {
         // * 3rd menu option
         InkWell(
           onTap: () {
-            controller.selectedDropDownValue?.value = "Semua";
+            _controller.selectedDropDownValue?.value = "Semua";
             Get.back();
           },
           child: Container(

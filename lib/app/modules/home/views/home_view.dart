@@ -1,16 +1,16 @@
-import 'dart:ffi';
-
-import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:milkymo/app/modules/home/views/widget/date_range_picker/custom_date_range_picker.dart';
 import 'package:milkymo/app/modules/home/views/widget/dropdown_search_widget.dart';
 import 'package:milkymo/app/modules/home/views/widget/home_card_widget.dart';
 import 'package:milkymo/app/modules/home/views/widget/top_home_app_bar_widget.dart';
 import 'package:milkymo/app/routes/app_pages.dart';
+
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -97,54 +97,49 @@ class HomeView extends GetView<HomeController> {
                   SizedBox(
                     child: Row(
                       children: [
-                        Obx(() => Card(
-                              clipBehavior: Clip.hardEdge,
-                              child: InkWell(
-                                splashColor: Colors.blue.withAlpha(30),
-                                onTap: () async {
-                                  DateTime? newDate = await showDatePicker(
-                                    locale: const Locale("id"),
-                                    context: context,
-                                    initialDate: DateTime.now(),
-                                    firstDate: DateTime(2000),
-                                    lastDate: DateTime.now(),
-                                  );
-                                  if (newDate != null) {
-                                    controller.selectedTime.value =
-                                        DateFormat("EEEE, d MMMM y", "id_ID")
-                                            .format(newDate);
-                                  }
-                                  // controller.showDateRangePickerAndUpdateValue(
-                                  //     context);
-                                },
-                                child: SizedBox(
-                                  width: 230.w,
-                                  height: 30.h,
-                                  child: Row(
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      SizedBox(
-                                        width: 25.w,
-                                        child: Icon(
-                                          Iconsax.calendar_search,
-                                          size: 20.w,
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      SizedBox(
-                                        width: 170.w,
-                                        child: Text(
-                                          "${controller.dateTimeRange.value.start.day} "
-                                          "${DateFormat("MMM", "id_ID").format(controller.dateTimeRange.value.start)} " // Menggunakan DateFormat langsung pada DateTime
-                                          "${controller.dateTimeRange.value.start.year}  "
-                                          "-  ${controller.dateTimeRange.value.end.day} "
-                                          "${DateFormat("MMM", "id_ID").format(controller.dateTimeRange.value.end)} " // Menggunakan DateFormat langsung pada DateTime
-                                          "${controller.dateTimeRange.value.end.year}",
+                        Card(
+                          clipBehavior: Clip.hardEdge,
+                          child: InkWell(
+                            splashColor: Colors.blue.withAlpha(30),
+                            onTap: () async {
+                              customTableCalender(context);
+                            },
+                            child: SizedBox(
+                              width: 230.w,
+                              height: 30.h,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  SizedBox(
+                                    width: 25.w,
+                                    child: Icon(
+                                      Iconsax.calendar_search,
+                                      size: 20.w,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  SizedBox(
+                                    width: 170.w,
+                                    child: Obx(() {
+                                      final rangeStart =
+                                          controller.rangeStart?.value;
+                                      final rangeEnd =
+                                          controller.rangeEnd?.value;
+
+                                      if (rangeStart != null &&
+                                          rangeEnd != null) {
+                                        return Text(
+                                          "${rangeStart.day} "
+                                          "${DateFormat("MMM", "id_ID").format(rangeStart)} "
+                                          "${rangeStart.year} - "
+                                          "${rangeEnd.day} "
+                                          "${DateFormat("MMM", "id_ID").format(rangeEnd)} "
+                                          "${rangeEnd.year}",
                                           textAlign: TextAlign.justify,
                                           style: TextStyle(
                                             color:
@@ -153,20 +148,34 @@ class HomeView extends GetView<HomeController> {
                                             fontFamily: "Poppins",
                                             fontWeight: FontWeight.w600,
                                           ),
-                                        ),
-                                      ),
-                                      SizedBox(
-                                        width: 2.w,
-                                      ),
-                                      Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        size: 20.w,
-                                      )
-                                    ],
+                                        );
+                                      } else {
+                                        return Text(
+                                          'No date selected',
+                                          textAlign: TextAlign.justify,
+                                          style: TextStyle(
+                                            color:
+                                                Colors.black.withOpacity(0.6),
+                                            fontSize: 12.sp,
+                                            fontFamily: "Poppins",
+                                            fontWeight: FontWeight.w600,
+                                          ),
+                                        );
+                                      }
+                                    }),
                                   ),
-                                ),
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Icon(
+                                    Icons.keyboard_arrow_down_rounded,
+                                    size: 20.w,
+                                  )
+                                ],
                               ),
-                            )),
+                            ),
+                          ),
+                        ),
                         // * dropdown time button
                         const CustomDropDownWidget()
                       ],
