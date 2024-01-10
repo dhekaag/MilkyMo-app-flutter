@@ -186,7 +186,7 @@ class LoginCardWidget extends StatelessWidget {
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r))),
                   onPressed: () {
-                    Get.offAllNamed(Routes.HOME);
+                    Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
                   },
                   child: Text(
                     "MASUK",

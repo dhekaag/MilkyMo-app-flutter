@@ -10,6 +10,9 @@ abstract class Routes {
   static const FORGOT_ACCOUNT = _Paths.FORGOT_ACCOUNT;
   static const CREATE_NEW_PASSWORD = _Paths.CREATE_NEW_PASSWORD;
   static const OTP_VERIFICATION = _Paths.OTP_VERIFICATION;
+  static const BOTTOM_NAVIGATION_BAR = _Paths.BOTTOM_NAVIGATION_BAR;
+  static const TRANSACTION_HISTORY = _Paths.TRANSACTION_HISTORY;
+  static const QR_CODE = _Paths.QR_CODE;
 }
 
 abstract class _Paths {
@@ -19,4 +22,7 @@ abstract class _Paths {
   static const FORGOT_ACCOUNT = '/forgot-account';
   static const CREATE_NEW_PASSWORD = '/create-new-password';
   static const OTP_VERIFICATION = '/otp-verification';
+  static const BOTTOM_NAVIGATION_BAR = '/bottom-navigation-bar';
+  static const TRANSACTION_HISTORY = '/transaction-history';
+  static const QR_CODE = '/qr-code';
 }

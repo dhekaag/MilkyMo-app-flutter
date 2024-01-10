@@ -25,8 +25,12 @@ class Myapp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
       builder: (context, child) => GetMaterialApp(
-        localizationsDelegates: const [GlobalMaterialLocalizations.delegate],
-        supportedLocales: const [Locale('en'), Locale('fr'), Locale('id')],
+        localizationsDelegates: const [
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+        ],
+        supportedLocales: const [Locale('id')],
         debugShowCheckedModeBanner: false,
         title: "MilkyMo",
         initialRoute: AppPages.INITIAL,

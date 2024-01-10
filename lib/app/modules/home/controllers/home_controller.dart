@@ -1,12 +1,8 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
-
-import '../../../constant/colors.dart';
 
 class HomeController extends GetxController {
   static HomeController get instance => Get.find();

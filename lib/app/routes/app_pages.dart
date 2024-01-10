@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 
+import '../modules/bottom_navigation_bar/bindings/bottom_navigation_bar_binding.dart';
+import '../modules/bottom_navigation_bar/views/bottom_navigation_bar_view.dart';
 import '../modules/create_new_password/bindings/verification_forgot_password_binding.dart';
 import '../modules/create_new_password/views/create_new_password_view.dart';
 import '../modules/forgot_account/bindings/forgot_account_binding.dart';
@@ -10,6 +12,10 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
+import '../modules/qr_code/bindings/qr_code_binding.dart';
+import '../modules/qr_code/views/qr_code_view.dart';
+import '../modules/transaction_history/bindings/transaction_history_binding.dart';
+import '../modules/transaction_history/views/transaction_history_view.dart';
 
 // ignore_for_file: constant_identifier_names
 
@@ -46,5 +52,20 @@ class AppPages {
       page: () => const OtpVerificationView(),
       binding: OtpVerificationBinding(),
     ),
+    GetPage(
+      name: _Paths.BOTTOM_NAVIGATION_BAR,
+      page: () => const BottomNavigationBarView(),
+      binding: BottomNavigationBarBinding(),
+    ),
+    GetPage(
+      name: _Paths.TRANSACTION_HISTORY,
+      page: () => const TransactionHistoryView(),
+      binding: TransactionHistoryBinding(),
+    ),
+    // GetPage(
+    //   name: _Paths.QR_CODE,
+    //   page: () => QrCodeView(),
+    //   binding: QrCodeBinding(),
+    // ),
   ];
 }

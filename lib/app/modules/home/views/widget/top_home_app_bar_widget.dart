@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+import 'package:milkymo/app/routes/app_pages.dart';
 
 class TopHomeAppBarWidget extends StatelessWidget {
   const TopHomeAppBarWidget({
@@ -69,7 +71,9 @@ class TopHomeAppBarWidget extends StatelessWidget {
           CircleAvatar(
               backgroundColor: Colors.white.withOpacity(0.3),
               child: IconButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.offAllNamed(Routes.LOGIN);
+                  },
                   icon: const Icon(
                     Iconsax.setting_2,
                     color: Colors.white,

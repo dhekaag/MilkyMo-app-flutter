@@ -110,9 +110,18 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                             fontWeight: FontWeight.w400),
                       ),
                       SizedBox(
-                        width: 85.w,
+                        width: 90.w,
                         child: TextButton(
-                            onPressed: () {}, child: const Text("Kirim ulang")),
+                            onPressed: () {},
+                            child: Text(
+                              "Kirim ulang",
+                              style: TextStyle(
+                                color: const Color(0xFF027ABF),
+                                fontSize: 12.sp,
+                                fontFamily: "Poppins",
+                                fontWeight: FontWeight.w600,
+                              ),
+                            )),
                       )
                     ],
                   ),
