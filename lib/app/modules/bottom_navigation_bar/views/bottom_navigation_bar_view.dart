@@ -5,7 +5,6 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/modules/qr_code/views/qr_code_view.dart';
-import 'package:milkymo/app/routes/app_pages.dart';
 
 import '../controllers/bottom_navigation_bar_controller.dart';
 
@@ -61,12 +60,14 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         controller.selectedIndex.value == 0
-                                            ? const Icon(
+                                            ? Icon(
                                                 Iconsax.home_15,
+                                                size: 25.w,
                                                 color: tPrimaryColor,
                                               )
                                             : Icon(
                                                 Iconsax.home,
+                                                size: 25.w,
                                                 color: tHintColor,
                                               ),
                                         Text(
@@ -98,12 +99,14 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         controller.selectedIndex.value == 1
-                                            ? const Icon(
+                                            ? Icon(
                                                 Icons.my_library_books_rounded,
+                                                size: 25.w,
                                                 color: tPrimaryColor,
                                               )
                                             : Icon(
                                                 Icons.my_library_books_outlined,
+                                                size: 25.w,
                                                 color: tHintColor,
                                               ),
                                         Text(

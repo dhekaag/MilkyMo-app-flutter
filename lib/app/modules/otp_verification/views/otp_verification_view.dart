@@ -128,7 +128,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                   SizedBox(height: 60.h),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          fixedSize: Size(320.w, 40.h),
+                          fixedSize: Size(300.w, 30.h),
                           backgroundColor: tPrimaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.r))),
@@ -139,7 +139,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                         "LANJUT",
                         style: TextStyle(
                           color: Colors.white,
-                          fontSize: 15.sp,
+                          fontSize: 14.sp,
                           fontFamily: 'Poppins',
                           fontWeight: FontWeight.w600,
                           letterSpacing: 0.85,

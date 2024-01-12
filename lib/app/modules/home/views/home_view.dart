@@ -10,8 +10,6 @@ import 'package:milkymo/app/modules/home/views/widget/dropdown_search_widget.dar
 import 'package:milkymo/app/modules/home/views/widget/home_card_widget.dart';
 import 'package:milkymo/app/modules/home/views/widget/list_of_milk_deposit_cards_widget.dart';
 import 'package:milkymo/app/modules/home/views/widget/top_home_app_bar_widget.dart';
-import 'package:milkymo/app/routes/app_pages.dart';
-
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
@@ -30,14 +28,14 @@ class HomeView extends GetView<HomeController> {
               child: Stack(
                 children: [
                   Container(
-                    width: 390.w,
-                    height: 230.h,
+                    width: size.width,
+                    height: 190.h,
                     decoration: ShapeDecoration(
                       color: tPrimaryColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                            bottomLeft: Radius.circular(30.r),
-                            bottomRight: Radius.circular(30.r)),
+                            bottomLeft: Radius.circular(25.r),
+                            bottomRight: Radius.circular(25.r)),
                       ),
                       shadows: const [
                         BoxShadow(
@@ -56,7 +54,7 @@ class HomeView extends GetView<HomeController> {
                         const TopHomeAppBarWidget(),
                         const HomeCardWidget(),
                         SizedBox(
-                          height: 30.h,
+                          height: 10.h,
                         ),
                         Container(
                             padding: EdgeInsets.symmetric(horizontal: 20.r),
@@ -103,14 +101,16 @@ class HomeView extends GetView<HomeController> {
                             children: [
                               Card(
                                 clipBehavior: Clip.hardEdge,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.r)),
                                 child: InkWell(
                                   splashColor: Colors.blue.withAlpha(30),
                                   onTap: () async {
                                     customTableCalender(context);
                                   },
                                   child: SizedBox(
-                                    width: 230.w,
-                                    height: 30.h,
+                                    width: 220.w,
+                                    height: 25.h,
                                     child: Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.start,
@@ -129,7 +129,7 @@ class HomeView extends GetView<HomeController> {
                                           width: 5.w,
                                         ),
                                         SizedBox(
-                                          width: 170.w,
+                                          width: 160.w,
                                           child: Obx(() {
                                             final rangeStart =
                                                 controller.rangeStart?.value;
@@ -195,8 +195,8 @@ class HomeView extends GetView<HomeController> {
                             child: ListView.builder(
                               // shrinkWrap: true,
                               // physics: const NeverScrollableScrollPhysics(),
-                              padding: EdgeInsets.zero,
-                              itemCount: 4,
+                              padding: EdgeInsets.only(bottom: 100.h),
+                              itemCount: 7,
                               itemBuilder: (context, index) {
                                 return const ListOfMilkDepositCardsWidget();
                               },
@@ -209,9 +209,6 @@ class HomeView extends GetView<HomeController> {
                 ],
               ),
             ),
-            SizedBox(
-              height: size.height * 0.15,
-            )
           ],
         ),
       ),

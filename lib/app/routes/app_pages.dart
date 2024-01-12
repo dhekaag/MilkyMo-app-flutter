@@ -12,8 +12,6 @@ import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/otp_verification/bindings/otp_verification_binding.dart';
 import '../modules/otp_verification/views/otp_verification_view.dart';
-import '../modules/qr_code/bindings/qr_code_binding.dart';
-import '../modules/qr_code/views/qr_code_view.dart';
 import '../modules/transaction_history/bindings/transaction_history_binding.dart';
 import '../modules/transaction_history/views/transaction_history_view.dart';
 

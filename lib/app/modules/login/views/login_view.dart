@@ -19,13 +19,13 @@ class LoginView extends GetView<LoginController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 120.h),
+              SizedBox(height: 100.h),
               Container(
-                width: 150.w,
+                width: 140.w,
                 alignment: Alignment.center,
                 child: Image.asset("assets/images/milkymo_logo.png"),
               ),
-              SizedBox(height: 60.h),
+              SizedBox(height: 50.h),
               LoginCardWidget(controller: controller),
             ],
           ),

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
-import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 
 class ListOfMilkDepositCardsWidget extends StatelessWidget {
   const ListOfMilkDepositCardsWidget({super.key});
@@ -21,9 +19,9 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: 300.w,
-            height: 120.h,
+            height: 95.h,
             child: Container(
-              padding: EdgeInsets.all(20.r),
+              padding: EdgeInsets.all(15.r),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -39,7 +37,7 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                           textAlign: TextAlign.justify,
                           style: TextStyle(
                             color: tBlackColor,
-                            fontSize: 15.sp,
+                            fontSize: 14.sp,
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w600,
                           ),
@@ -87,7 +85,7 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                         "Volume susu",
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          color: Colors.black.withOpacity(0.800000011920929),
+                          color: Colors.black.withOpacity(0.8),
                           fontSize: 13.sp,
                           fontFamily: "Poppins",
                           fontWeight: FontWeight.w500,
@@ -97,7 +95,7 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                   ),
                   // * card icon
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       const Icon(
@@ -105,27 +103,28 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                         color: tGreenColor,
                       ),
                       SizedBox(
-                        height: 30.h,
+                        height: 2.h,
                       ),
                       SizedBox(
+                          width: 80.w,
                           child: Text.rich(TextSpan(children: [
-                        TextSpan(
-                            text: "24.39",
-                            style: TextStyle(
-                              color: tBlackColor,
-                              fontSize: 14.sp,
-                              fontFamily: "Poppins",
-                              fontWeight: FontWeight.w600,
-                            )),
-                        TextSpan(
-                            text: " Liter",
-                            style: TextStyle(
-                              color: tBlackColor,
-                              fontSize: 14.sp,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                            )),
-                      ])))
+                            TextSpan(
+                                text: "24.39",
+                                style: TextStyle(
+                                  color: tBlackColor,
+                                  fontSize: 13.sp,
+                                  fontFamily: "Poppins",
+                                  fontWeight: FontWeight.w600,
+                                )),
+                            TextSpan(
+                                text: " Liter",
+                                style: TextStyle(
+                                  color: tBlackColor,
+                                  fontSize: 14.sp,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.w600,
+                                )),
+                          ])))
                     ],
                   )
                 ],

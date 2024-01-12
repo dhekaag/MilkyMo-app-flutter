@@ -14,6 +14,8 @@ class CustomDropDownWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(() => Card(
           clipBehavior: Clip.hardEdge,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.r)),
           child: InkWell(
             splashColor: Colors.blue.withAlpha(30),
             onTap: () async {
@@ -24,15 +26,15 @@ class CustomDropDownWidget extends StatelessWidget {
                 direction: PopoverDirection.bottom,
                 backgroundColor: Colors.white,
                 arrowDxOffset: 30.r,
-                width: 80.w,
+                width: 75.w,
                 height: 130.h,
                 arrowHeight: 15,
                 arrowWidth: 30,
               );
             },
             child: SizedBox(
-              width: 80.w,
-              height: 30.h,
+              width: 75.w,
+              height: 25.h,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -40,7 +42,7 @@ class CustomDropDownWidget extends StatelessWidget {
                     width: 5.w,
                   ),
                   SizedBox(
-                    width: 50.w,
+                    width: 44.w,
                     child: Text(
                       _controller.selectedDropDownValue!.value,
                       textAlign: TextAlign.justify,

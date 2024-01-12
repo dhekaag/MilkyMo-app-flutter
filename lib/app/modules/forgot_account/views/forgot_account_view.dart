@@ -36,46 +36,44 @@ class ForgotAccountView extends GetView<ForgotAccountController> {
             SizedBox(height: 40.h),
             Form(
                 key: controller.formKey,
-                child: Container(
-                  child: Column(
-                    children: [
-                      TextFormField(
-                        decoration: InputDecoration(
-                            prefixIcon: const Icon(Iconsax.user),
-                            labelText: "Nama",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15.r))),
-                      ),
-                      SizedBox(height: 20.h),
-                      TextFormField(
-                        decoration: InputDecoration(
-                            prefixIcon: const Icon(Icons.phone_android),
-                            labelText: "Nomor telepon",
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(15.r))),
-                      ),
-                      SizedBox(height: 60.h),
-                      ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              fixedSize: Size(320.w, 40.h),
-                              backgroundColor: tPrimaryColor,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.r))),
-                          onPressed: () {
-                            Get.toNamed(Routes.OTP_VERIFICATION);
-                          },
-                          child: Text(
-                            "LANJUT",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 15.sp,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.85,
-                            ),
-                          ))
-                    ],
-                  ),
+                child: Column(
+                  children: [
+                    TextFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Iconsax.user),
+                          labelText: "Nama",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.r))),
+                    ),
+                    SizedBox(height: 20.h),
+                    TextFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: const Icon(Icons.phone_android),
+                          labelText: "Nomor telepon",
+                          border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15.r))),
+                    ),
+                    SizedBox(height: 60.h),
+                    ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(300.w, 30.h),
+                            backgroundColor: tPrimaryColor,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r))),
+                        onPressed: () {
+                          Get.toNamed(Routes.OTP_VERIFICATION);
+                        },
+                        child: Text(
+                          "LANJUT",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 14.sp,
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w600,
+                            letterSpacing: 0.85,
+                          ),
+                        ))
+                  ],
                 ))
           ],
         ),

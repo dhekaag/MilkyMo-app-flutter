@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:milkymo/app/routes/app_pages.dart';
 import '../controllers/verification_forgot_password_controller.dart';
 
 class CreateNewPasswordView extends GetView<CreateNewPasswordController> {
@@ -90,18 +91,18 @@ class CreateNewPasswordView extends GetView<CreateNewPasswordController> {
             SizedBox(height: 60.h),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                    fixedSize: Size(320.w, 40.h),
+                    fixedSize: Size(300.w, 30.h),
                     backgroundColor: tPrimaryColor,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10.r))),
                 onPressed: () {
-                  // Get.toNamed(Routes.VERIFICATION_FORGOT_PASSWORD);
+                  Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
                 },
                 child: Text(
                   "LANJUT",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 15.sp,
+                    fontSize: 14.sp,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w600,
                     letterSpacing: 0.85,

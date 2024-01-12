@@ -12,7 +12,7 @@ class TopHomeAppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 50.r, bottom: 30.r),
+      padding: EdgeInsets.only(top: 30.r, bottom: 20.r),
       child: Row(
         children: [
           CircleAvatar(
@@ -31,7 +31,7 @@ class TopHomeAppBarWidget extends StatelessWidget {
                   'Halo!',
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
-                    fontSize: 16.sp,
+                    fontSize: 15.sp,
                     fontFamily: 'Poppins',
                     fontWeight: FontWeight.w600,
                   ),

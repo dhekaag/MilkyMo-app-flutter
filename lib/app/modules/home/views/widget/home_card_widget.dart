@@ -24,9 +24,9 @@ class HomeCardWidget extends StatelessWidget {
           },
           child: SizedBox(
             width: 320.w,
-            height: 140.h,
+            height: 130.h,
             child: Container(
-              padding: EdgeInsets.fromLTRB(20.r, 5.r, 20.r, 20.r),
+              padding: EdgeInsets.fromLTRB(15.r, 5.r, 10.r, 10.r),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -37,7 +37,7 @@ class HomeCardWidget extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: tBlackColor,
-                        fontSize: 14.sp,
+                        fontSize: 13.sp,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.75,
@@ -45,7 +45,7 @@ class HomeCardWidget extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    height: 5.h,
+                    height: 10.h,
                   ),
                   Row(
                     children: [
@@ -54,7 +54,7 @@ class HomeCardWidget extends StatelessWidget {
                           width: 70.w,
                           child: Image.asset("assets/icons/icon_milk_can.png")),
                       Container(
-                        padding: EdgeInsets.only(left: 10.r),
+                        padding: EdgeInsets.only(left: 5.r),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -62,7 +62,7 @@ class HomeCardWidget extends StatelessWidget {
                               width: 60.w,
                               child: Text(
                                 "Tanggal",
-                                textAlign: TextAlign.center,
+                                textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13.sp,
@@ -72,13 +72,13 @@ class HomeCardWidget extends StatelessWidget {
                               ),
                             ),
                             SizedBox(
-                              width: 115.w,
+                              width: 120.w,
                               child: Text(
-                                "23 Oktober 2021",
-                                textAlign: TextAlign.center,
+                                "23 November 2021",
+                                textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   color: Colors.black.withOpacity(0.6),
-                                  fontSize: 14.sp,
+                                  fontSize: 13.sp,
                                   fontFamily: "Poppins",
                                   fontWeight: FontWeight.w500,
                                 ),
@@ -88,7 +88,7 @@ class HomeCardWidget extends StatelessWidget {
                               width: 50.w,
                               child: Text(
                                 "Waktu",
-                                textAlign: TextAlign.center,
+                                textAlign: TextAlign.justify,
                                 style: TextStyle(
                                   color: Colors.black,
                                   fontSize: 13.sp,
@@ -97,40 +97,37 @@ class HomeCardWidget extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding: EdgeInsets.only(left: 4.r),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 30.w,
-                                    child: Text(
-                                      '9:37',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(0.6),
-                                        fontSize: 14.sp,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                            Row(
+                              children: [
+                                SizedBox(
+                                  width: 35.w,
+                                  child: Text(
+                                    '09:37',
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6),
+                                      fontSize: 13.sp,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w500,
                                     ),
                                   ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  SizedBox(
-                                    child: Text(
-                                      "Pagi",
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        color: Colors.black.withOpacity(0.6),
-                                        fontSize: 14.sp,
-                                        fontFamily: "Poppins",
-                                        fontWeight: FontWeight.w500,
-                                      ),
+                                ),
+                                SizedBox(
+                                  width: 5.w,
+                                ),
+                                SizedBox(
+                                  child: Text(
+                                    "Pagi",
+                                    textAlign: TextAlign.justify,
+                                    style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6),
+                                      fontSize: 13.sp,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  )
-                                ],
-                              ),
+                                  ),
+                                )
+                              ],
                             )
                           ],
                         ),
@@ -139,32 +136,37 @@ class HomeCardWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          const Icon(
-                            Icons.verified,
-                            color: tGreenColor,
+                          Padding(
+                            padding: EdgeInsets.only(right: 10.r),
+                            child: Icon(
+                              Icons.verified,
+                              color: tGreenColor,
+                              size: 20.w,
+                            ),
                           ),
                           SizedBox(
                             height: 30.h,
                           ),
                           SizedBox(
+                              width: 80.w,
                               child: Text.rich(TextSpan(children: [
-                            TextSpan(
-                                text: "24.39",
-                                style: TextStyle(
-                                  color: tBlackColor,
-                                  fontSize: 14.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w600,
-                                )),
-                            TextSpan(
-                                text: " Liter",
-                                style: TextStyle(
-                                  color: tBlackColor,
-                                  fontSize: 14.sp,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                )),
-                          ])))
+                                TextSpan(
+                                    text: "24.39",
+                                    style: TextStyle(
+                                      color: tBlackColor,
+                                      fontSize: 13.sp,
+                                      fontFamily: "Poppins",
+                                      fontWeight: FontWeight.w600,
+                                    )),
+                                TextSpan(
+                                    text: " Liter",
+                                    style: TextStyle(
+                                      color: tBlackColor,
+                                      fontSize: 14.sp,
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w600,
+                                    )),
+                              ])))
                         ],
                       )
                     ],

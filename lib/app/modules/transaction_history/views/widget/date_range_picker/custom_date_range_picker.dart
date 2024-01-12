@@ -3,9 +3,10 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
+import 'package:milkymo/app/modules/transaction_history/controllers/transaction_history_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-final _controller = HomeController.instance;
+final _controller = TransactionHistoryController.instance;
 
 void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
   _controller.isDatePickerSucced.value = false;
@@ -17,12 +18,13 @@ void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
       end: end,
     );
     final duration = pickedDateRange.end.difference(pickedDateRange.start);
-    if (duration.inDays >= 7) {
+    if (duration.inDays >= 31) {
       _controller.isDatePickerSucced.value = false;
       Get.dialog(
         AlertDialog(
           title: const Text('Peringatan'),
-          content: const Text('Rentang tanggal tidak boleh lebih dari 7 hari.'),
+          content:
+              const Text('Rentang tanggal tidak boleh lebih dari 31 hari.'),
           actions: [
             TextButton(
               onPressed: () {
@@ -47,7 +49,7 @@ void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
   _controller.focusedDay.value = focusedDay;
 }
 
-void customTableCalender(BuildContext context) {
+void transactionHistoryTableCalender(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {

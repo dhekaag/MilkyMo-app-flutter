@@ -4,8 +4,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
 
-import '../controllers/qr_code_controller.dart';
-
 Future qrCodeView(BuildContext context) {
   final size = MediaQuery.of(context).size;
   return Get.bottomSheet(
@@ -13,7 +11,7 @@ Future qrCodeView(BuildContext context) {
       isScrollControlled: true,
       enableDrag: true,
       Container(
-        height: size.height * 0.82,
+        height: size.height * 0.83,
         decoration: const BoxDecoration(
           color: tBackgroundColor,
           borderRadius: BorderRadius.only(
@@ -41,21 +39,21 @@ Future qrCodeView(BuildContext context) {
                   style: TextStyle(
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.w700,
-                      fontSize: 18.sp),
+                      fontSize: 16.sp),
                 ),
               ),
               const Divider(
                 color: Colors.black26,
               ),
               SizedBox(
-                height: 30.h,
+                height: 20.h,
               ),
               Text(
                 "Jajat Sudrajat",
                 style: TextStyle(
                   fontFamily: "Poppins",
                   fontWeight: FontWeight.w600,
-                  fontSize: 18.sp,
+                  fontSize: 16.sp,
                 ),
               ),
               SizedBox(
@@ -66,25 +64,25 @@ Future qrCodeView(BuildContext context) {
                 style: TextStyle(
                     fontFamily: "Poppins",
                     fontWeight: FontWeight.w500,
-                    fontSize: 17.sp),
+                    fontSize: 15.sp),
               ),
               SizedBox(
-                height: 20.h,
+                height: 10.h,
               ),
               Container(
                 width: 300.w,
-                height: 300.h,
+                height: 250.h,
                 decoration: BoxDecoration(
                     color: tWhiteColor,
                     borderRadius: BorderRadius.circular(15.r)),
                 child: Center(child: Image.asset("assets/images/qr_code.png")),
               ),
               SizedBox(
-                height: 30.h,
+                height: 40.h,
               ),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                      fixedSize: Size(300.w, 40.h),
+                      fixedSize: Size(300.w, 30.h),
                       backgroundColor: tPrimaryColor,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10.r))),
@@ -95,7 +93,7 @@ Future qrCodeView(BuildContext context) {
                     "KEMBALI",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 15.sp,
+                      fontSize: 14.sp,
                       fontFamily: 'Poppins',
                       fontWeight: FontWeight.w600,
                       letterSpacing: 0.85,
