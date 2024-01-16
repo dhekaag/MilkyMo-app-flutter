@@ -13,6 +13,8 @@ abstract class Routes {
   static const BOTTOM_NAVIGATION_BAR = _Paths.BOTTOM_NAVIGATION_BAR;
   static const TRANSACTION_HISTORY = _Paths.TRANSACTION_HISTORY;
   static const QR_CODE = _Paths.QR_CODE;
+  static const PROFILE = _Paths.PROFILE;
+  static const NOTIFICATION = _Paths.NOTIFICATION;
 }
 
 abstract class _Paths {
@@ -25,4 +27,6 @@ abstract class _Paths {
   static const BOTTOM_NAVIGATION_BAR = '/bottom-navigation-bar';
   static const TRANSACTION_HISTORY = '/transaction-history';
   static const QR_CODE = '/qr-code';
+  static const PROFILE = '/profile';
+  static const NOTIFICATION = '/notification';
 }

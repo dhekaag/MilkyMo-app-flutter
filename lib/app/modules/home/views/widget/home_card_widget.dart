@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class HomeCardWidget extends StatelessWidget {
   const HomeCardWidget({
@@ -22,160 +23,141 @@ class HomeCardWidget extends StatelessWidget {
           onTap: () {
             debugPrint('Card tapped.');
           },
-          child: SizedBox(
-            width: 320.w,
-            height: 130.h,
-            child: Container(
-              padding: EdgeInsets.fromLTRB(15.r, 5.r, 10.r, 10.r),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    child: Text(
-                      'Penyerahan Susu Terakhir',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: tBlackColor,
-                        fontSize: 13.sp,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w700,
-                        letterSpacing: 0.75,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10.h,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                          padding: EdgeInsets.only(top: 10.r),
-                          width: 70.w,
-                          child: Image.asset("assets/icons/icon_milk_can.png")),
-                      Container(
-                        padding: EdgeInsets.only(left: 5.r),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 60.w,
-                              child: Text(
-                                "Tanggal",
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 120.w,
-                              child: Text(
-                                "23 November 2021",
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  color: Colors.black.withOpacity(0.6),
-                                  fontSize: 13.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 50.w,
-                              child: Text(
-                                "Waktu",
-                                textAlign: TextAlign.justify,
-                                style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 13.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w500,
-                                ),
-                              ),
-                            ),
-                            Row(
-                              children: [
-                                SizedBox(
-                                  width: 35.w,
-                                  child: Text(
-                                    '09:37',
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.black.withOpacity(0.6),
-                                      fontSize: 13.sp,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 5.w,
-                                ),
-                                SizedBox(
-                                  child: Text(
-                                    "Pagi",
-                                    textAlign: TextAlign.justify,
-                                    style: TextStyle(
-                                      color: Colors.black.withOpacity(0.6),
-                                      fontSize: 13.sp,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                )
-                              ],
-                            )
-                          ],
-                        ),
-                      ),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
+          child: Container(
+            padding: EdgeInsets.all(5.r),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text("Penyerahan Susu Terakhir")
+                    .text
+                    .size(14)
+                    .bold
+                    .letterSpacing(0.75)
+                    .color(tBlackColor)
+                    .center
+                    .make()
+                    .pOnly(top: 2, bottom: 10),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    VxBox(child: Image.asset("assets/icons/icon_milk_can.png"))
+                        .height(80)
+                        .make()
+                        .pOnly(top: 5),
+                    VxBox(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: 10.r),
-                            child: Icon(
-                              Icons.verified,
-                              color: tGreenColor,
-                              size: 20.w,
-                            ),
-                          ),
-                          SizedBox(
-                            height: 30.h,
-                          ),
-                          SizedBox(
-                              width: 80.w,
-                              child: Text.rich(TextSpan(children: [
-                                TextSpan(
-                                    text: "24.39",
-                                    style: TextStyle(
-                                      color: tBlackColor,
-                                      fontSize: 13.sp,
-                                      fontFamily: "Poppins",
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                                TextSpan(
-                                    text: " Liter",
-                                    style: TextStyle(
-                                      color: tBlackColor,
-                                      fontSize: 14.sp,
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.w600,
-                                    )),
-                              ])))
+                          const Text("Tanggal")
+                              .text
+                              .size(14)
+                              .medium
+                              .make()
+                              .box
+                              .width(70)
+                              .make(),
+                          // * ===============================
+                          const Text("23 November 2024")
+                              .text
+                              .justify
+                              .size(14)
+                              .minFontSize(14)
+                              .medium
+                              .color(Vx.black.withOpacity(0.6))
+                              .ellipsis
+                              .maxLines(1)
+                              .make()
+                              .box
+                              .width(143)
+                              .make(),
+                          // * =================================
+                          const Text("Waktu")
+                              .text
+                              .size(14)
+                              .medium
+                              .justify
+                              .make()
+                              .box
+                              .width(60)
+                              .make(),
+                          // * =================================
+                          Row(
+                            children: [
+                              const Text("09:37")
+                                  .text
+                                  .size(14)
+                                  .medium
+                                  .color(Vx.black.withOpacity(0.6))
+                                  .maxLines(1)
+                                  .ellipsis
+                                  .make()
+                                  .box
+                                  .width(45)
+                                  .make()
+                                  .pOnly(right: 5.w),
+                              // * =================================
+                              const Text("Pagi")
+                                  .text
+                                  .size(14)
+                                  .medium
+                                  .color(Vx.black.withOpacity(0.6))
+                                  .make()
+                                  .box
+                                  .width(45)
+                                  .make()
+                            ],
+                          )
                         ],
-                      )
-                    ],
-                  )
-                ],
-              ),
+                      ),
+                    ).make().pOnly(left: 5),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        const Icon(
+                          Icons.verified,
+                          color: tGreenColor,
+                        ).iconSize(22).pOnly(right: 10.w, bottom: 30.h),
+                        // * =================================
+                        VxBox(
+                            child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            const Text("24.39")
+                                .text
+                                .size(14)
+                                .semiBold
+                                .color(tBlackColor)
+                                .maxLines(1)
+                                .ellipsis
+                                .make()
+                                .box
+                                .width(47)
+                                .make(),
+                            const Text("Liter")
+                                .text
+                                .size(14)
+                                .semiBold
+                                .minFontSize(14)
+                                .color(tBlackColor)
+                                .maxLines(1)
+                                .ellipsis
+                                .make()
+                                .box
+                                .width(35)
+                                .make(),
+                          ],
+                        )).width(90).make()
+                      ],
+                    )
+                  ],
+                )
+              ],
             ),
           ),
-        ),
+        ).box.width(400).height(140).make(),
       ),
     );
   }

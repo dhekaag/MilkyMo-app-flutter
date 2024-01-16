@@ -3,7 +3,9 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:milkymo/app/constant/mytext_field.dart';
 import 'package:milkymo/app/routes/app_pages.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 import '../controllers/forgot_account_controller.dart';
 
@@ -17,42 +19,46 @@ class ForgotAccountView extends GetView<ForgotAccountController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.symmetric(vertical: 30.r),
+            VxBox(
               child: IconButton(
                   onPressed: () {
                     Get.back();
                   },
-                  icon: const Icon(Icons.arrow_back_rounded)),
-            ),
-            SizedBox(
-              height: 50.h,
-            ),
-            SizedBox(
-              width: 100.w,
+                  icon: const Icon(Icons.arrow_back_rounded).iconSize(25)),
+            ).alignTopLeft.make().pSymmetric(v: 30),
+            VxBox().height(50).make(),
+            VxBox(
               child: Image.asset("assets/images/id_card_image.png"),
-            ),
-            SizedBox(height: 40.h),
+            ).width(100).make(),
+            VxBox().height(50).make(),
             Form(
                 key: controller.formKey,
                 child: Column(
                   children: [
-                    TextFormField(
+                    MyTextField(
                       decoration: InputDecoration(
-                          prefixIcon: const Icon(Iconsax.user),
+                          prefixIcon: const Icon(Iconsax.user).iconSize(23),
                           labelText: "Nama",
+                          labelStyle: TextStyle(
+                              fontSize: 11.sp,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w500),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.r))),
-                    ),
-                    SizedBox(height: 20.h),
-                    TextFormField(
+                    ).box.height(60).make(),
+                    VxBox().height(20).make(),
+                    MyTextField(
                       decoration: InputDecoration(
-                          prefixIcon: const Icon(Icons.phone_android),
-                          labelText: "Nomor telepon",
+                          prefixIcon:
+                              const Icon(Icons.phone_android).iconSize(23),
+                          labelText: "Nomor Telepon",
+                          labelStyle: TextStyle(
+                              fontSize: 11.sp,
+                              fontFamily: "Poppins",
+                              fontWeight: FontWeight.w500),
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(15.r))),
-                    ),
+                    ).box.height(60).make(),
                     SizedBox(height: 60.h),
                     ElevatedButton(
                         style: ElevatedButton.styleFrom(
@@ -63,16 +69,13 @@ class ForgotAccountView extends GetView<ForgotAccountController> {
                         onPressed: () {
                           Get.toNamed(Routes.OTP_VERIFICATION);
                         },
-                        child: Text(
-                          "LANJUT",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14.sp,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                            letterSpacing: 0.85,
-                          ),
-                        ))
+                        child: const Text("LANJUT")
+                            .text
+                            .size(14)
+                            .semiBold
+                            .letterSpacing(0.90)
+                            .color(tWhiteColor)
+                            .make())
                   ],
                 ))
           ],

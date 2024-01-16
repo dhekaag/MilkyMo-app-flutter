@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class ListOfMilkDepositCardsWidget extends StatelessWidget {
   const ListOfMilkDepositCardsWidget({super.key});
@@ -17,120 +18,91 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
           onTap: () {
             debugPrint('Card tapped.');
           },
-          child: SizedBox(
-            width: 300.w,
-            height: 95.h,
-            child: Container(
-              padding: EdgeInsets.all(15.r),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  // * card title
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        width: 100.w,
-                        child: Text(
-                          "21102100201",
-                          textAlign: TextAlign.justify,
-                          style: TextStyle(
-                            color: tBlackColor,
-                            fontSize: 14.sp,
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      SizedBox(
-                          width: 180.w,
-                          child: Text.rich(
-                              TextSpan(locale: const Locale("id"), children: [
-                            TextSpan(
-                              text: "21/10/2021",
-                              style: TextStyle(
-                                color: tBlackColor.withOpacity(0.8),
-                                fontSize: 13.sp,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextSpan(
-                              text: "  9 : 37",
-                              style: TextStyle(
-                                color: tBlackColor.withOpacity(0.8),
-                                fontSize: 13.sp,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                            TextSpan(
-                              text: " (Pagi)",
-                              style: TextStyle(
-                                color: tBlackColor.withOpacity(0.8),
-                                fontSize: 13.sp,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            ),
-                          ]))),
-                      SizedBox(
-                        height: 5.h,
-                      ),
-                      Text(
-                        "Volume susu",
-                        textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: Colors.black.withOpacity(0.8),
-                          fontSize: 13.sp,
-                          fontFamily: "Poppins",
-                          fontWeight: FontWeight.w500,
-                        ),
-                      )
-                    ],
-                  ),
-                  // * card icon
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      const Icon(
-                        Icons.verified,
-                        color: tGreenColor,
-                      ),
-                      SizedBox(
-                        height: 2.h,
-                      ),
-                      SizedBox(
-                          width: 80.w,
-                          child: Text.rich(TextSpan(children: [
-                            TextSpan(
-                                text: "24.39",
-                                style: TextStyle(
-                                  color: tBlackColor,
-                                  fontSize: 13.sp,
-                                  fontFamily: "Poppins",
-                                  fontWeight: FontWeight.w600,
-                                )),
-                            TextSpan(
-                                text: " Liter",
-                                style: TextStyle(
-                                  color: tBlackColor,
-                                  fontSize: 14.sp,
-                                  fontFamily: 'Poppins',
-                                  fontWeight: FontWeight.w600,
-                                )),
-                          ])))
-                    ],
-                  )
-                ],
-              ),
-            ),
-          ),
+          child: VxBox(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // * card title
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    VxBox(
+                            child: const Text("21102100201")
+                                .text
+                                .size(14)
+                                .color(tBlackColor)
+                                .semiBold
+                                .justify
+                                .maxLines(1)
+                                .ellipsis
+                                .make())
+                        .width(100)
+                        .make(),
+                    // ? ============================================
+                    VxBox(
+                        child: Text.rich(
+                            TextSpan(locale: const Locale("id"), children: [
+                      const TextSpan(text: "21/10/2021")
+                          .textSpan
+                          .size(13)
+                          .semiBold
+                          .color(tBlackColor.withOpacity(0.8))
+                          .make(),
+                      // * ============================================
+                      const TextSpan(text: "  9:37")
+                          .textSpan
+                          .size(13)
+                          .semiBold
+                          .color(tBlackColor.withOpacity(0.8))
+                          .make(),
+                      // * ============================================
+                      const TextSpan(text: "  ( Pagi )")
+                          .textSpan
+                          .size(13)
+                          .semiBold
+                          .color(tBlackColor.withOpacity(0.8))
+                          .make(),
+                    ]))).width(190).make(),
+                    // ? ============================================
+                    VxBox(
+                            child: const Text("Volume susu")
+                                .text
+                                .size(13)
+                                .semiBold
+                                .color(tBlackColor.withOpacity(0.8))
+                                .justify
+                                .make())
+                        .width(100)
+                        .make()
+                  ],
+                ).pOnly(left: 5),
+                // * card icon
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    const Icon(
+                      Icons.verified,
+                      color: tGreenColor,
+                    ).iconSize(20).pOnly(right: 10, bottom: 10),
+                    // ? ======================================
+                    VxBox(
+                            child: const Text("24.39 Liter")
+                                .text
+                                .size(14)
+                                .semiBold
+                                .color(tBlackColor)
+                                .maxLines(1)
+                                .ellipsis
+                                .make())
+                        .width(85)
+                        .make()
+                  ],
+                )
+              ],
+            ).p12(),
+          ).width(300).height(92).make(),
         ));
   }
 }

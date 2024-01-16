@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 final _controller = HomeController.instance;
 
@@ -47,12 +48,12 @@ void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
   _controller.focusedDay.value = focusedDay;
 }
 
-void customTableCalender(BuildContext context) {
+void homeTableCalender(BuildContext context) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
       return Dialog(
-        insetPadding: EdgeInsets.symmetric(horizontal: 25.r, vertical: 110.r),
+        insetPadding: EdgeInsets.symmetric(horizontal: 25.w, vertical: 70.h),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10.r),
         ),
@@ -61,119 +62,126 @@ void customTableCalender(BuildContext context) {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.h),
-                child: Text(
-                  "Pilih Tanggal",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: "Poppins",
-                    fontSize: 18.sp,
-                    fontWeight: FontWeight.w600,
-                  ),
-                ),
-              ),
+              VxBox(
+                      child: const Text("Pilih Tanggal")
+                          .text
+                          .size(17)
+                          .semiBold
+                          .color(tBlackColor)
+                          .center
+                          .make())
+                  .make()
+                  .pOnly(top: 5),
               Divider(
                 color: tHintColor,
               ),
               Expanded(
-                child: Obx(() => TableCalendar(
-                      firstDay: DateTime(2000),
-                      lastDay: DateTime.now(),
-                      startingDayOfWeek: StartingDayOfWeek.monday,
-                      locale: "id",
-                      calendarStyle:
-                          const CalendarStyle(outsideDaysVisible: false),
-                      focusedDay: _controller.focusedDay.value!,
-                      rangeSelectionMode: RangeSelectionMode.toggledOn,
-                      rangeStartDay: _controller.newPickedStartDate?.value,
-                      rangeEndDay: _controller.newPickedEndDate?.value,
-                      calendarFormat: CalendarFormat.month,
-                      selectedDayPredicate: (day) =>
-                          isSameDay(_controller.selectedDay?.value, day),
-                      onRangeSelected: _onRangeSelected,
-                      onDaySelected: _onDaySelected,
-                      onFormatChanged: (format) {
-                        if (_controller.calendarFormat.value != format) {
-                          _controller.calendarFormat.value = format;
-                        }
-                      },
-                      onPageChanged: (focusedDay) {
-                        _controller.focusedDay.value = focusedDay;
-                      },
-                    )),
-              ),
-              SizedBox(
-                height: 10.h,
+                child: VxBox(
+                  child: Obx(() => TableCalendar(
+                        daysOfWeekStyle: DaysOfWeekStyle(
+                            weekendStyle: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w600),
+                            weekdayStyle: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w600)),
+                        firstDay: DateTime(2000),
+                        lastDay: DateTime.now(),
+                        startingDayOfWeek: StartingDayOfWeek.monday,
+                        locale: "id",
+                        calendarStyle: CalendarStyle(
+                            cellPadding: EdgeInsets.zero,
+                            weekendTextStyle: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w500),
+                            defaultTextStyle: TextStyle(
+                                fontFamily: "Poppins",
+                                fontSize: 11.sp,
+                                fontWeight: FontWeight.w500),
+                            outsideDaysVisible: false),
+                        focusedDay: _controller.focusedDay.value!,
+                        rangeSelectionMode: RangeSelectionMode.toggledOn,
+                        rangeStartDay: _controller.newPickedStartDate?.value,
+                        rangeEndDay: _controller.newPickedEndDate?.value,
+                        calendarFormat: CalendarFormat.month,
+                        selectedDayPredicate: (day) =>
+                            isSameDay(_controller.selectedDay?.value, day),
+                        onRangeSelected: _onRangeSelected,
+                        onDaySelected: _onDaySelected,
+                        onFormatChanged: (format) {
+                          if (_controller.calendarFormat.value != format) {
+                            _controller.calendarFormat.value = format;
+                          }
+                        },
+                        onPageChanged: (focusedDay) {
+                          _controller.focusedDay.value = focusedDay;
+                        },
+                      )),
+                ).make().pOnly(bottom: 10),
               ),
               Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          fixedSize: Size(100.w, 20.h),
-                          backgroundColor: Colors.blue,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r))),
-                      onPressed: () {
-                        _controller.isDatePickerSucced.value = false;
-                        _controller.newPickedStartDate?.value = null;
-                        _controller.newPickedEndDate?.value = null;
-                        Get.back();
-                      },
-                      child: Text(
-                        "BATAL",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 13.sp,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.85,
-                        ),
-                      ),
-                    ),
+                        style: ElevatedButton.styleFrom(
+                            fixedSize: Size(100.w, 20.h),
+                            backgroundColor: Colors.blue,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r))),
+                        onPressed: () {
+                          _controller.isDatePickerSucced.value = false;
+                          _controller.newPickedStartDate?.value = null;
+                          _controller.newPickedEndDate?.value = null;
+                          Get.back();
+                        },
+                        child: const Text("BATAL")
+                            .text
+                            .size(14)
+                            .semiBold
+                            .color(tWhiteColor)
+                            .letterSpacing(0.90)
+                            .make()),
                     Obx(
                       () => Flexible(
                         flex: 1,
                         child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            fixedSize: Size(100.w, 20.h),
-                            backgroundColor:
-                                _controller.isDatePickerSucced.value
-                                    ? Colors.blue
-                                    : tHintColor,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10.r),
+                            style: ElevatedButton.styleFrom(
+                              fixedSize: Size(100.w, 20.h),
+                              backgroundColor:
+                                  _controller.isDatePickerSucced.value
+                                      ? Colors.blue
+                                      : tHintColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10.r),
+                              ),
                             ),
-                          ),
-                          onPressed: _controller.isDatePickerSucced.value
-                              ? () {
-                                  _controller.rangeStart?.value =
-                                      _controller.newPickedStartDate?.value;
-                                  _controller.rangeEnd?.value =
-                                      _controller.newPickedEndDate?.value;
-                                  Get.back();
-                                }
-                              : null, // Disable button when isDatePickerSucced is false
-                          child: Text(
-                            "OKE",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 13.sp,
-                              fontFamily: 'Poppins',
-                              fontWeight: FontWeight.w600,
-                              letterSpacing: 0.85,
-                            ),
-                          ),
-                        ),
+                            onPressed: _controller.isDatePickerSucced.value
+                                ? () {
+                                    _controller.rangeStart?.value =
+                                        _controller.newPickedStartDate?.value;
+                                    _controller.rangeEnd?.value =
+                                        _controller.newPickedEndDate?.value;
+                                    Get.back();
+                                  }
+                                : null, // Disable button when isDatePickerSucced is false
+                            child: const Text("OKE")
+                                .text
+                                .size(14)
+                                .semiBold
+                                .color(tWhiteColor)
+                                .letterSpacing(0.90)
+                                .make()),
                       ),
                     ),
                   ])
             ],
           ),
         ),
-      );
+      ).safeArea();
     },
   );
 }

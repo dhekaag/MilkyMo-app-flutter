@@ -23,7 +23,9 @@ class Myapp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: const Size(360, 690),
+      designSize: const Size(360, 640),
+      ensureScreenSize: true,
+      minTextAdapt: true,
       builder: (context, child) => GetMaterialApp(
         localizationsDelegates: const [
           GlobalMaterialLocalizations.delegate,
@@ -32,6 +34,10 @@ class Myapp extends StatelessWidget {
         ],
         supportedLocales: const [Locale('id')],
         debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+          brightness: Brightness.light,
+          fontFamily: "Poppins",
+        ),
         title: "MilkyMo",
         initialRoute: AppPages.INITIAL,
         getPages: AppPages.routes,

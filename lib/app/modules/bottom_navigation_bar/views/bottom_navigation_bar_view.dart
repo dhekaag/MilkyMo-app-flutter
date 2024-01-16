@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/modules/qr_code/views/qr_code_view.dart';
 
 import '../controllers/bottom_navigation_bar_controller.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
   const BottomNavigationBarView({Key? key}) : super(key: key);
@@ -32,9 +32,9 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                         painter: BNBCustomPainter(),
                       ),
                       Center(
-                          heightFactor: 0.6,
+                          heightFactor: 0.9,
                           child: FloatingActionButton(
-                            elevation: 6,
+                            elevation: 4,
                             backgroundColor: tSecondaryColor,
                             onPressed: () {
                               qrCodeView(context);
@@ -51,8 +51,7 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                                   onTap: (() {
                                     controller.selectedIndex.value = 0;
                                   }),
-                                  child: SizedBox(
-                                    width: 50.w,
+                                  child: VxBox(
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -60,38 +59,33 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         controller.selectedIndex.value == 0
-                                            ? Icon(
+                                            ? const Icon(
                                                 Iconsax.home_15,
-                                                size: 25.w,
                                                 color: tPrimaryColor,
-                                              )
+                                              ).iconSize(25)
                                             : Icon(
                                                 Iconsax.home,
-                                                size: 25.w,
                                                 color: tHintColor,
-                                              ),
-                                        Text(
-                                          "Beranda",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: controller.selectedIndex
-                                                          .value ==
-                                                      0
-                                                  ? tPrimaryColor
-                                                  : tHintColor),
-                                        )
+                                              ).iconSize(25),
+                                        const Text("Beranda")
+                                            .text
+                                            .size(10)
+                                            .medium
+                                            .color(controller
+                                                        .selectedIndex.value ==
+                                                    0
+                                                ? tPrimaryColor
+                                                : tHintColor)
+                                            .make()
                                       ],
                                     ),
-                                  ),
+                                  ).width(60).make(),
                                 ),
                                 InkWell(
                                   onTap: (() {
                                     controller.selectedIndex.value = 1;
                                   }),
-                                  child: SizedBox(
-                                    width: 50.w,
+                                  child: VxBox(
                                     child: Column(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
@@ -99,31 +93,27 @@ class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         controller.selectedIndex.value == 1
-                                            ? Icon(
+                                            ? const Icon(
                                                 Icons.my_library_books_rounded,
-                                                size: 25.w,
                                                 color: tPrimaryColor,
-                                              )
+                                              ).iconSize(25)
                                             : Icon(
                                                 Icons.my_library_books_outlined,
-                                                size: 25.w,
                                                 color: tHintColor,
-                                              ),
-                                        Text(
-                                          "Riwayat",
-                                          style: TextStyle(
-                                              fontFamily: "Poppins",
-                                              fontSize: 10.sp,
-                                              fontWeight: FontWeight.w500,
-                                              color: controller.selectedIndex
-                                                          .value ==
-                                                      1
-                                                  ? tPrimaryColor
-                                                  : tHintColor),
-                                        )
+                                              ).iconSize(25),
+                                        const Text("Riwayat")
+                                            .text
+                                            .size(10)
+                                            .medium
+                                            .color(controller
+                                                        .selectedIndex.value ==
+                                                    1
+                                                ? tPrimaryColor
+                                                : tHintColor)
+                                            .make()
                                       ],
                                     ),
-                                  ),
+                                  ).width(60).make(),
                                 )
                               ],
                             ),
@@ -142,18 +132,18 @@ class BNBCustomPainter extends CustomPainter {
     Paint paint = Paint()
       ..color = tWhiteColor
       ..style = PaintingStyle.fill;
-    Path path = Path()..moveTo(0, 20);
-    path.quadraticBezierTo(size.width * 0.20, 0, size.width * 0.35, 0);
-    path.quadraticBezierTo(size.width * 0.40, 0, size.width * 0.40, 20);
-    path.arcToPoint(Offset(size.width * 0.60, 20),
+    Path path = Path()..moveTo(0, 20.h);
+    path.quadraticBezierTo(0.20.sw, 0, 0.35.sw, 0);
+    path.quadraticBezierTo(0.40.sw, 0, 0.40.sw, 20.h);
+    path.arcToPoint(Offset(0.60.sw, 20.h),
         radius: Radius.circular(10.r), clockwise: false);
-    path.quadraticBezierTo(size.width * 0.60, 0, size.width * 0.65, 0);
-    path.quadraticBezierTo(size.width * 0.80, 0, size.width, 20);
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
+    path.quadraticBezierTo(0.60.sw, 0, 0.65.sw, 0);
+    path.quadraticBezierTo(0.80.sw, 0, 1.sw, 20.h);
+    path.lineTo(1.sw, 1.sh);
+    path.lineTo(0, 1.sh);
     path.close();
 
-    canvas.drawShadow(path, Colors.black, 5, true);
+    canvas.drawShadow(path, Colors.black, 5.w, true);
     canvas.drawPath(path, paint);
   }
 

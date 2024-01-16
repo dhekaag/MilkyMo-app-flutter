@@ -4,6 +4,7 @@ import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:popover/popover.dart';
+import 'package:velocity_x/velocity_x.dart';
 
 final _controller = HomeController.instance;
 
@@ -22,7 +23,7 @@ class CustomDropDownWidget extends StatelessWidget {
               showPopover(
                 context: context,
                 bodyBuilder: (context) => const ListItems(),
-                onPop: () => print('Popover was popped!'),
+                onPop: () => debugPrint('Popover was popped!'),
                 direction: PopoverDirection.bottom,
                 backgroundColor: Colors.white,
                 arrowDxOffset: 30.r,
@@ -38,29 +39,22 @@ class CustomDropDownWidget extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    width: 5.w,
-                  ),
-                  SizedBox(
-                    width: 44.w,
-                    child: Text(
-                      _controller.selectedDropDownValue!.value,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        color: Colors.black.withOpacity(0.6),
-                        fontSize: 12.sp,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 2.w,
-                  ),
-                  Icon(
+                  VxBox(
+                          child: Text(_controller.selectedDropDownValue!.value)
+                              .text
+                              .size(12)
+                              .semiBold
+                              .color(Vx.black.withOpacity(0.6))
+                              .maxLines(1)
+                              .ellipsis
+                              .justify
+                              .make())
+                      .width(50)
+                      .make()
+                      .pOnly(left: 5, right: 2),
+                  const Icon(
                     Icons.keyboard_arrow_down_rounded,
-                    size: 20.w,
-                  )
+                  ).iconSize(23)
                 ],
               ),
             ),

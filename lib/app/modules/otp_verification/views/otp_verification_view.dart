@@ -5,6 +5,7 @@ import 'package:milkymo/app/constant/colors.dart';
 import 'package:milkymo/app/routes/app_pages.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:velocity_x/velocity_x.dart';
 import '../controllers/otp_verification_controller.dart';
 
 class OtpVerificationView extends GetView<OtpVerificationController> {
@@ -17,66 +18,49 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Container(
-              alignment: Alignment.topLeft,
-              padding: EdgeInsets.symmetric(vertical: 30.r),
+            VxBox(
               child: IconButton(
                   onPressed: () {
                     Get.back();
                   },
-                  icon: const Icon(Icons.arrow_back_rounded)),
-            ),
-            SizedBox(
-              height: 30.h,
-            ),
-            SizedBox(
-              width: 120.w,
+                  icon: const Icon(Icons.arrow_back_rounded).iconSize(23)),
+            ).alignTopLeft.make().pSymmetric(v: 30),
+            VxBox().height(35).make(),
+            VxBox(
               child: Image.asset("assets/images/otp_image.png"),
-            ),
-            SizedBox(height: 40.h),
+            ).width(125).make(),
+            VxBox().height(20).make(),
             Container(
               padding: EdgeInsets.all(10.r),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(
-                    width: 250.w,
-                    child: Text(
-                      'Masukkan Kode OTP',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 16.sp,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    child: Text(
-                      'Coba cek di sms kamu!',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 12.sp,
-                        fontFamily: 'Poppins',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 72.w,
-                    child: Text(
-                      "01 : 23",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.black54,
-                        fontSize: 12.sp,
-                        fontFamily: "Poppins",
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
+                  VxBox(
+                    child: const Text('Masukkan Kode OTP')
+                        .text
+                        .size(17)
+                        .semiBold
+                        .color(tBlackColor)
+                        .center
+                        .make(),
+                  ).width(255).make(),
+                  VxBox(
+                    child: const Text('Coba cek di sms kamu!')
+                        .text
+                        .size(12)
+                        .semiBold
+                        .color(Colors.black45)
+                        .make(),
+                  ).make(),
+                  VxBox(
+                    child: const Text("01 : 23")
+                        .text
+                        .size(12)
+                        .medium
+                        .color(Colors.black54)
+                        .center
+                        .make(),
+                  ).width(75).make(),
                   SizedBox(
                     height: 10.h,
                   ),
@@ -85,7 +69,7 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                     length: 6,
                     width: MediaQuery.of(context).size.width,
                     textFieldAlignment: MainAxisAlignment.spaceAround,
-                    fieldWidth: 45.w,
+                    fieldWidth: 45,
                     fieldStyle: FieldStyle.box,
                     outlineBorderRadius: 15.r,
                     style: TextStyle(fontSize: 17.sp),
@@ -101,28 +85,23 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        "Kode otp belum terkirim ya?",
-                        style: TextStyle(
-                            color: Colors.black54,
-                            fontFamily: "Poppins",
-                            fontSize: 12.sp,
-                            fontWeight: FontWeight.w400),
-                      ),
-                      SizedBox(
-                        width: 90.w,
+                      const Text("Kode otp belum terkirim ya?")
+                          .text
+                          .size(12)
+                          .medium
+                          .color(Colors.black54)
+                          .make(),
+                      VxBox(
                         child: TextButton(
                             onPressed: () {},
-                            child: Text(
-                              "Kirim ulang",
-                              style: TextStyle(
-                                color: const Color(0xFF027ABF),
-                                fontSize: 12.sp,
-                                fontFamily: "Poppins",
-                                fontWeight: FontWeight.w600,
-                              ),
-                            )),
-                      )
+                            child: const Text("Kirim ulang")
+                                .text
+                                .size(12)
+                                .semiBold
+                                .color(tSecondaryColor)
+                                .justify
+                                .make()),
+                      ).width(95).make()
                     ],
                   ),
                   SizedBox(height: 60.h),
@@ -135,16 +114,13 @@ class OtpVerificationView extends GetView<OtpVerificationController> {
                       onPressed: () {
                         Get.toNamed(Routes.CREATE_NEW_PASSWORD);
                       },
-                      child: Text(
-                        "LANJUT",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 14.sp,
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w600,
-                          letterSpacing: 0.85,
-                        ),
-                      ))
+                      child: const Text("LANJUT")
+                          .text
+                          .size(14)
+                          .semiBold
+                          .letterSpacing(0.90)
+                          .color(tWhiteColor)
+                          .make())
                 ],
               ),
             )
