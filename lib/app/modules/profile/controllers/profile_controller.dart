@@ -1,23 +1,11 @@
 import 'package:get/get.dart';
+import 'package:milkymo/app/data/local_storage/hive/hive_preferences.dart';
 
 class ProfileController extends GetxController {
-  //TODO: Implement ProfileController
+  static ProfileController get instance => Get.find();
 
-  final count = 0.obs;
-  @override
-  void onInit() {
-    super.onInit();
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
+  RxString userName = getUserName().toString().obs;
+  RxString userId = getIdPeternak().toString().obs;
+  RxString phoneNumber = getPhoneNumber().toString().obs;
+  RxString address = getAddress().toString().obs;
 }

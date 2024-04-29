@@ -9,7 +9,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/verification_forgot_password_controller.dart';
 
 class CreateNewPasswordView extends GetView<CreateNewPasswordController> {
-  const CreateNewPasswordView({Key? key}) : super(key: key);
+  const CreateNewPasswordView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

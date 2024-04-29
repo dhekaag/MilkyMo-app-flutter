@@ -11,7 +11,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/transaction_history_controller.dart';
 
 class TransactionHistoryView extends GetView<TransactionHistoryController> {
-  const TransactionHistoryView({Key? key}) : super(key: key);
+  const TransactionHistoryView({super.key});
 
   @override
   Widget build(BuildContext context) {

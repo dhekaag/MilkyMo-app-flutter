@@ -1,12 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+// ignore: must_be_immutable
 class HomeCardWidget extends StatelessWidget {
-  const HomeCardWidget({
-    super.key,
-  });
+  HomeController controller = HomeController();
+  String? tanggal;
+  String? jam;
+  String? waktu;
+  String? volumeSusu;
+  HomeCardWidget(
+      {super.key,
+      required this.controller,
+      this.tanggal,
+      this.jam,
+      this.waktu,
+      this.volumeSusu});
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +69,7 @@ class HomeCardWidget extends StatelessWidget {
                               .width(70)
                               .make(),
                           // * ===============================
-                          const Text("23 November 2024")
+                          Text(tanggal.toString())
                               .text
                               .justify
                               .size(14)
@@ -84,7 +95,7 @@ class HomeCardWidget extends StatelessWidget {
                           // * =================================
                           Row(
                             children: [
-                              const Text("09:37")
+                              Text(jam.toString())
                                   .text
                                   .size(14)
                                   .medium
@@ -97,7 +108,7 @@ class HomeCardWidget extends StatelessWidget {
                                   .make()
                                   .pOnly(right: 5.w),
                               // * =================================
-                              const Text("Pagi")
+                              Text(waktu.toString())
                                   .text
                                   .size(14)
                                   .medium
@@ -125,7 +136,7 @@ class HomeCardWidget extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            const Text("24.39")
+                            Text(volumeSusu.toString())
                                 .text
                                 .size(14)
                                 .semiBold

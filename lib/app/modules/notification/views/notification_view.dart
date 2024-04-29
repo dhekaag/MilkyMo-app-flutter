@@ -8,7 +8,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/notification_controller.dart';
 
 class NotificationView extends GetView<NotificationController> {
-  const NotificationView({Key? key}) : super(key: key);
+  const NotificationView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,8 +60,8 @@ class ListNotifications extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text("KPS BOGOR").text.size(14).semiBold.justify.make(),
-            Text("Transaksi 14102100202 Berhasil")
+            const Text("KPS BOGOR").text.size(14).semiBold.justify.make(),
+            const Text("Transaksi 14102100202 Berhasil")
                 .text
                 .size(14)
                 .semiBold
@@ -72,14 +72,14 @@ class ListNotifications extends StatelessWidget {
         ),
         Column(
           children: [
-            Text("Sen")
+            const Text("Sen")
                 .text
                 .size(13)
                 .semiBold
                 .color(tBlackColor.withOpacity(0.6))
                 .justify
                 .make(),
-            Text("10:37")
+            const Text("10:37")
                 .text
                 .size(13)
                 .semiBold

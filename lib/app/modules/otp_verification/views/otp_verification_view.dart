@@ -9,7 +9,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/otp_verification_controller.dart';
 
 class OtpVerificationView extends GetView<OtpVerificationController> {
-  const OtpVerificationView({Key? key}) : super(key: key);
+  const OtpVerificationView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(

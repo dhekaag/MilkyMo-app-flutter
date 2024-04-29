@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:milkymo/app/constant/colors.dart';
-import 'package:milkymo/app/constant/mytext_field.dart';
 import 'package:milkymo/app/modules/login/controllers/login_controller.dart';
 import 'package:milkymo/app/routes/app_pages.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -72,8 +72,15 @@ class LoginCardWidget extends StatelessWidget {
                       key: controller.formKey,
                       child: Column(
                         children: [
-                          MyTextField(
+                          TextFormField(
                             key: const ValueKey("idPeternak"),
+                            controller: controller.idPeternakController,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 12.sp,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.black.withOpacity(0.8),
+                            ),
                             decoration: InputDecoration(
                                 prefixIcon: const Icon(
                                   Iconsax.user,
@@ -87,9 +94,15 @@ class LoginCardWidget extends StatelessWidget {
                                 border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(15.r))),
                           ).paddingOnly(bottom: 15),
-                          Obx(() => MyTextField(
-                                maxLines: 1,
+                          Obx(() => TextFormField(
                                 key: const ValueKey("password"),
+                                controller: controller.passwordController,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 12.sp,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black.withOpacity(0.8),
+                                ),
                                 obscureText: controller.isPasswordHidden.value
                                     ? true
                                     : false,
@@ -125,7 +138,7 @@ class LoginCardWidget extends StatelessWidget {
                                             BorderRadius.circular(15.r))),
                               ))
                         ],
-                      ).h(140)),
+                      ).h(135)),
                   SizedBox(
                     width: context.screenWidth,
                     child: Row(
@@ -144,12 +157,7 @@ class LoginCardWidget extends StatelessWidget {
                                     MaterialStatePropertyAll(tHintColor)),
                             label: const Text(
                               "Ingat saya",
-                            )
-                                .text
-                                .size(12)
-                                .fontFamily("Poppins")
-                                .color(tHintColor)
-                                .make())),
+                            ).text.size(12).semiBold.color(tHintColor).make())),
                         TextButton(
                             onPressed: () {
                               Get.toNamed(Routes.FORGOT_ACCOUNT);
@@ -160,18 +168,31 @@ class LoginCardWidget extends StatelessWidget {
                       ],
                     ),
                   ).pOnly(bottom: 20),
-                  ElevatedButton(
+                  Obx(() => ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           fixedSize: Size(300.w, 30.h),
+                          disabledBackgroundColor: Vx.blue300,
                           backgroundColor: tPrimaryColor,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10.r))),
-                      onPressed: () {
-                        Get.offAllNamed(Routes.BOTTOM_NAVIGATION_BAR);
-                      },
-                      child: const Text(
-                        "MASUK",
-                      ).text.size(15).semiBold.letterSpacing(0.85).make())
+                      onPressed: controller.isLoading.value
+                          ? null
+                          : () {
+                              controller.login();
+                            },
+                      child: controller.isLoading.value
+                          ? SpinKitWave(
+                              size: 20.w,
+                              color: tPrimaryColor,
+                            )
+                          : const Text(
+                              "MASUK",
+                            )
+                              .text
+                              .size(15)
+                              .semiBold
+                              .letterSpacing(0.85)
+                              .make()))
                 ]).pSymmetric(h: 20)));
   }
 }

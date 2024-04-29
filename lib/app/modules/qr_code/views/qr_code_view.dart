@@ -3,9 +3,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:get/get.dart';
 import 'package:milkymo/app/constant/colors.dart';
+import 'package:milkymo/app/modules/qr_code/controllers/qr_code_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 Future qrCodeView(BuildContext context) {
+  QrCodeController controller = Get.find();
   return Get.bottomSheet(
       backgroundColor: Colors.transparent,
       isScrollControlled: true,
@@ -41,7 +43,7 @@ Future qrCodeView(BuildContext context) {
               color: Colors.black26,
             ).pOnly(bottom: 20),
             VxBox(
-                    child: const Text("Jajat Sudrajat")
+                    child: Text(controller.userName.value!)
                         .text
                         .size(16)
                         .semiBold
@@ -50,7 +52,7 @@ Future qrCodeView(BuildContext context) {
                 .make()
                 .pOnly(bottom: 5),
             VxBox(
-                    child: const Text("22314576093")
+                    child: Text(controller.userId.value!)
                         .text
                         .size(15)
                         .medium

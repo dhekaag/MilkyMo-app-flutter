@@ -9,120 +9,118 @@ import '../controllers/bottom_navigation_bar_controller.dart';
 import 'package:velocity_x/velocity_x.dart';
 
 class BottomNavigationBarView extends GetView<BottomNavigationBarController> {
-  const BottomNavigationBarView({Key? key}) : super(key: key);
+  const BottomNavigationBarView({super.key});
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
     return Scaffold(
-        backgroundColor: tBackgroundColor,
-        body: Stack(
-          children: [
-            Obx(() =>
-                controller.screens[controller.selectedIndex.value].page()),
-            Positioned(
-              bottom: 0,
-              left: 0,
-              child: SizedBox(
-                  width: size.width,
-                  height: 80.h,
-                  child: Stack(
-                    children: [
-                      CustomPaint(
-                        size: Size(size.width, 80.h),
-                        painter: BNBCustomPainter(),
-                      ),
-                      Center(
-                          heightFactor: 0.9,
-                          child: FloatingActionButton(
-                            elevation: 4,
-                            backgroundColor: tSecondaryColor,
-                            onPressed: () {
-                              qrCodeView(context);
-                            },
-                            child: const Icon(Icons.qr_code_scanner_rounded),
-                          )),
-                      Obx(() => SizedBox(
-                            width: size.width,
-                            height: 80.h,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                InkWell(
-                                  onTap: (() {
-                                    controller.selectedIndex.value = 0;
-                                  }),
-                                  child: VxBox(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        controller.selectedIndex.value == 0
-                                            ? const Icon(
-                                                Iconsax.home_15,
-                                                color: tPrimaryColor,
-                                              ).iconSize(25)
-                                            : Icon(
-                                                Iconsax.home,
-                                                color: tHintColor,
-                                              ).iconSize(25),
-                                        const Text("Beranda")
-                                            .text
-                                            .size(10)
-                                            .medium
-                                            .color(controller
-                                                        .selectedIndex.value ==
-                                                    0
+      backgroundColor: tBackgroundColor,
+      body: Stack(
+        children: [
+          Obx(() => controller.screens[controller.selectedIndex.value].page()),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            child: SizedBox(
+              width: size.width,
+              height: 80.h,
+              child: Stack(
+                children: [
+                  CustomPaint(
+                    size: Size(size.width, 80.h),
+                    painter: BNBCustomPainter(),
+                  ),
+                  Center(
+                    heightFactor: 0.9,
+                    child: FloatingActionButton(
+                      elevation: 4,
+                      backgroundColor: tSecondaryColor,
+                      onPressed: () {
+                        // Memanggil qrCodeView dengan benar
+                        Get.to(qrCodeView(context));
+                      },
+                      child: const Icon(Icons.qr_code_scanner_rounded),
+                    ),
+                  ),
+                  Obx(() => SizedBox(
+                        width: size.width,
+                        height: 80.h,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            InkWell(
+                              onTap: (() {
+                                controller.selectedIndex.value = 0;
+                              }),
+                              child: VxBox(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    controller.selectedIndex.value == 0
+                                        ? const Icon(
+                                            Iconsax.home_15,
+                                            color: tPrimaryColor,
+                                          ).iconSize(25)
+                                        : Icon(
+                                            Iconsax.home,
+                                            color: tHintColor,
+                                          ).iconSize(25),
+                                    const Text("Beranda")
+                                        .text
+                                        .size(10)
+                                        .medium
+                                        .color(
+                                            controller.selectedIndex.value == 0
                                                 ? tPrimaryColor
                                                 : tHintColor)
-                                            .make()
-                                      ],
-                                    ),
-                                  ).width(60).make(),
+                                        .make()
+                                  ],
                                 ),
-                                InkWell(
-                                  onTap: (() {
-                                    controller.selectedIndex.value = 1;
-                                  }),
-                                  child: VxBox(
-                                    child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        controller.selectedIndex.value == 1
-                                            ? const Icon(
-                                                Icons.my_library_books_rounded,
-                                                color: tPrimaryColor,
-                                              ).iconSize(25)
-                                            : Icon(
-                                                Icons.my_library_books_outlined,
-                                                color: tHintColor,
-                                              ).iconSize(25),
-                                        const Text("Riwayat")
-                                            .text
-                                            .size(10)
-                                            .medium
-                                            .color(controller
-                                                        .selectedIndex.value ==
-                                                    1
+                              ).width(60).make(),
+                            ),
+                            InkWell(
+                              onTap: (() {
+                                controller.selectedIndex.value = 1;
+                              }),
+                              child: VxBox(
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    controller.selectedIndex.value == 1
+                                        ? const Icon(
+                                            Icons.my_library_books_rounded,
+                                            color: tPrimaryColor,
+                                          ).iconSize(25)
+                                        : Icon(
+                                            Icons.my_library_books_outlined,
+                                            color: tHintColor,
+                                          ).iconSize(25),
+                                    const Text("Riwayat")
+                                        .text
+                                        .size(10)
+                                        .medium
+                                        .color(
+                                            controller.selectedIndex.value == 1
                                                 ? tPrimaryColor
                                                 : tHintColor)
-                                            .make()
-                                      ],
-                                    ),
-                                  ).width(60).make(),
-                                )
-                              ],
-                            ),
-                          ))
-                    ],
-                  )),
+                                        .make()
+                                  ],
+                                ),
+                              ).width(60).make(),
+                            )
+                          ],
+                        ),
+                      ))
+                ],
+              ),
             ),
-          ],
-        ));
+          ),
+        ],
+      ),
+    );
   }
 }
 

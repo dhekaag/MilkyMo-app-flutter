@@ -15,6 +15,7 @@ abstract class Routes {
   static const QR_CODE = _Paths.QR_CODE;
   static const PROFILE = _Paths.PROFILE;
   static const NOTIFICATION = _Paths.NOTIFICATION;
+  static const INITIAL = _Paths.INITIAL;
 }
 
 abstract class _Paths {
@@ -29,4 +30,5 @@ abstract class _Paths {
   static const QR_CODE = '/qr-code';
   static const PROFILE = '/profile';
   static const NOTIFICATION = '/notification';
+  static const INITIAL = '/initial';
 }

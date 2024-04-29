@@ -1,10 +1,25 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:milkymo/app/constant/colors.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import 'package:milkymo/app/constant/colors.dart';
+
+// ignore: must_be_immutable
 class ListOfMilkDepositCardsWidget extends StatelessWidget {
-  const ListOfMilkDepositCardsWidget({super.key});
+  String? idPeternak;
+  String? tanggal;
+  String? waktu;
+  String? jam;
+  String? volumeSusu;
+  ListOfMilkDepositCardsWidget({
+    super.key,
+    this.idPeternak,
+    this.tanggal,
+    this.jam,
+    this.waktu,
+    this.volumeSusu,
+  });
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -28,7 +43,7 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     VxBox(
-                            child: const Text("21102100201")
+                            child: Text(idPeternak.toString())
                                 .text
                                 .size(14)
                                 .color(tBlackColor)
@@ -43,26 +58,26 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                     VxBox(
                         child: Text.rich(
                             TextSpan(locale: const Locale("id"), children: [
-                      const TextSpan(text: "21/10/2021")
+                      TextSpan(text: tanggal.toString())
                           .textSpan
                           .size(13)
                           .semiBold
                           .color(tBlackColor.withOpacity(0.8))
                           .make(),
                       // * ============================================
-                      const TextSpan(text: "  9:37")
+                      TextSpan(text: ",  ${jam.toString()}")
                           .textSpan
                           .size(13)
                           .semiBold
                           .color(tBlackColor.withOpacity(0.8))
                           .make(),
                       // * ============================================
-                      const TextSpan(text: "  ( Pagi )")
+                      TextSpan(text: "  ( ${waktu.toString()} )")
                           .textSpan
                           .size(13)
                           .semiBold
                           .color(tBlackColor.withOpacity(0.8))
-                          .make(),
+                          .make()
                     ]))).width(190).make(),
                     // ? ============================================
                     VxBox(
@@ -88,7 +103,7 @@ class ListOfMilkDepositCardsWidget extends StatelessWidget {
                     ).iconSize(20).pOnly(right: 10, bottom: 10),
                     // ? ======================================
                     VxBox(
-                            child: const Text("24.39 Liter")
+                            child: Text("${volumeSusu.toString()} Liter")
                                 .text
                                 .size(14)
                                 .semiBold

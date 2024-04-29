@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:milkymo/app/data/repositories/transaction_repository.dart';
 import 'package:milkymo/app/modules/home/controllers/home_controller.dart';
 import 'package:milkymo/app/modules/qr_code/controllers/qr_code_controller.dart';
 import 'package:milkymo/app/modules/transaction_history/controllers/transaction_history_controller.dart';
@@ -13,6 +14,9 @@ class BottomNavigationBarBinding extends Bindings {
     );
     Get.lazyPut<HomeController>(
       () => HomeController(),
+    );
+    Get.lazyPut<TransactionRepository>(
+      () => TransactionRepository(),
     );
     Get.lazyPut<TransactionHistoryController>(
       () => TransactionHistoryController(),

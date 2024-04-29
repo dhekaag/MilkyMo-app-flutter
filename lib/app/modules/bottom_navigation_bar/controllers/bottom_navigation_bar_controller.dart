@@ -6,6 +6,7 @@ import 'package:milkymo/app/routes/app_pages.dart';
 
 class BottomNavigationBarController extends GetxController {
   static BottomNavigationBarController get instace => Get.find();
+
   final Rx<int> selectedIndex = 0.obs;
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 

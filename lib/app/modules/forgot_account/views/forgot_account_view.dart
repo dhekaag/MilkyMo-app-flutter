@@ -10,7 +10,7 @@ import 'package:velocity_x/velocity_x.dart';
 import '../controllers/forgot_account_controller.dart';
 
 class ForgotAccountView extends GetView<ForgotAccountController> {
-  const ForgotAccountView({Key? key}) : super(key: key);
+  const ForgotAccountView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
