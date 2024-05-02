@@ -9,63 +9,67 @@ UserModel userModelFromJson(String str) => UserModel.fromJson(json.decode(str));
 String userModelToJson(UserModel data) => json.encode(data.toJson());
 
 class UserModel {
-  bool status;
-  int statusCode;
-  Data data;
+  bool? status;
+  int? statusCode;
+  UserDataModel? data;
 
   UserModel({
-    required this.status,
-    required this.statusCode,
-    required this.data,
+    this.status,
+    this.statusCode,
+    this.data,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
         status: json["status"],
         statusCode: json["statusCode"],
-        data: Data.fromJson(json["data"]),
+        data:
+            json["data"] == null ? null : UserDataModel.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
         "status": status,
         "statusCode": statusCode,
-        "data": data.toJson(),
+        "data": data?.toJson(),
       };
 }
 
-class Data {
-  String id;
-  String uid;
-  String idPeternak;
-  String name;
-  String password;
-  String email;
-  String phoneNumber;
-  String address;
+class UserDataModel {
+  dynamic address;
+  String? id;
+  String? uid;
+  String? idPeternak;
+  String? name;
+  String? password;
+  String? email;
+  String? phoneNumber;
   dynamic qrCode;
-  String role;
-  List<dynamic>? transactions;
-  DateTime createdAt;
-  DateTime updatedAt;
+  String? role;
+  List<String>? transactions;
+  DateTime? createdAt;
+  DateTime? updatedAt;
   int? v;
+  String? deviceId;
 
-  Data({
-    required this.id,
-    required this.uid,
-    required this.idPeternak,
-    required this.name,
-    required this.password,
-    required this.email,
-    required this.phoneNumber,
-    required this.address,
-    required this.qrCode,
-    required this.role,
+  UserDataModel({
+    this.address,
+    this.id,
+    this.uid,
+    this.idPeternak,
+    this.name,
+    this.password,
+    this.email,
+    this.phoneNumber,
+    this.qrCode,
+    this.role,
     this.transactions,
-    required this.createdAt,
-    required this.updatedAt,
+    this.createdAt,
+    this.updatedAt,
     this.v,
+    this.deviceId,
   });
 
-  factory Data.fromJson(Map<String, dynamic> json) => Data(
+  factory UserDataModel.fromJson(Map<String, dynamic> json) => UserDataModel(
+        address: json["address"],
         id: json["_id"],
         uid: json["uid"],
         idPeternak: json["id_peternak"],
@@ -73,16 +77,23 @@ class Data {
         password: json["password"],
         email: json["email"],
         phoneNumber: json["phone_number"],
-        address: json["address"],
         qrCode: json["qr_code"],
         role: json["role"],
-        transactions: List<dynamic>.from(json["transactions"].map((x) => x)),
-        createdAt: DateTime.parse(json["createdAt"]),
-        updatedAt: DateTime.parse(json["updatedAt"]),
+        transactions: json["transactions"] == null
+            ? []
+            : List<String>.from(json["transactions"]!.map((x) => x)),
+        createdAt: json["createdAt"] == null
+            ? null
+            : DateTime.parse(json["createdAt"]),
+        updatedAt: json["updatedAt"] == null
+            ? null
+            : DateTime.parse(json["updatedAt"]),
         v: json["__v"],
+        deviceId: json["device_id"],
       );
 
   Map<String, dynamic> toJson() => {
+        "address": address,
         "_id": id,
         "uid": uid,
         "id_peternak": idPeternak,
@@ -90,12 +101,14 @@ class Data {
         "password": password,
         "email": email,
         "phone_number": phoneNumber,
-        "address": address,
         "qr_code": qrCode,
         "role": role,
-        "transactions": List<dynamic>.from(transactions!.map((x) => x)),
-        "createdAt": createdAt.toIso8601String(),
-        "updatedAt": updatedAt.toIso8601String(),
+        "transactions": transactions == null
+            ? []
+            : List<dynamic>.from(transactions!.map((x) => x)),
+        "createdAt": createdAt?.toIso8601String(),
+        "updatedAt": updatedAt?.toIso8601String(),
         "__v": v,
+        "device_id": deviceId,
       };
 }

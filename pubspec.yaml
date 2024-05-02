@@ -1,5 +1,5 @@
 name: milkymo
-version: 1.0.0+1
+version: 1.0.0-beta.2
 publish_to: none
 description: MilkyMo app using flutter. This is for milk collection center in
   digital recording of milk weighing results.
@@ -7,6 +7,7 @@ environment:
   sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
+  awesome_dialog: ^3.2.0
   cupertino_icons: ^1.0.2
   device_preview: ^1.1.0
   dio: ^5.4.0
@@ -34,6 +35,7 @@ dependencies:
   intl: ^0.18.1
   json_annotation: ^4.8.1
   logger: ^2.0.2+1
+  onesignal_flutter: ^5.1.5
   otp_text_field: ^1.1.3
   path_provider: ^2.1.2
   popover: ^0.3.0

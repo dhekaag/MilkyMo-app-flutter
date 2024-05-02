@@ -13,8 +13,7 @@ import 'package:milkymo/app/utils/logger.dart';
 import 'package:milkymo/google_cloud_logging_service.dart';
 import 'app/routes/app_pages.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-final googleCloudLoggingService = GoogleCloudLoggingService();
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 void main() async {
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +24,8 @@ void main() async {
   await initializeDateFormatting('id_ID', null);
   // Setup Cloud Logging API
   _setUpCloudLoggingApi();
+  // Setup One Signal for push notification
+  _setUpOneSignalPushNotification();
 
   // Initialize Authentication Repository
   Get.put(AuthRepository());
@@ -72,9 +73,24 @@ void _portraitModeOnly() {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle.light.copyWith(
+      statusBarColor: Colors.transparent,
+      // systemNavigationBarColor: Colors.transparent,
+    ),
+  );
+}
+
+void _setUpOneSignalPushNotification() {
+//Remove this method to stop OneSignal Debugging
+  OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
+  OneSignal.initialize("0292ae1b-6b9d-4a64-9413-ae6de68ed6fb");
+  // The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+  OneSignal.Notifications.requestPermission(true);
 }
 
 void _setUpCloudLoggingApi() async {
+  final googleCloudLoggingService = GoogleCloudLoggingService();
   await googleCloudLoggingService
       .setupLoggingApi()
       .then((value) => Log.cat.i('Setup Logging API completed'));

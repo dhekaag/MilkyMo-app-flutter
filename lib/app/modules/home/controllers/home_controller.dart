@@ -7,6 +7,7 @@ import 'package:milkymo/app/data/models/transaction_model.dart';
 import 'package:milkymo/app/data/repositories/auth_repository.dart';
 import 'package:milkymo/app/data/repositories/transaction_repository.dart';
 import 'package:milkymo/app/utils/logger.dart';
+import 'package:milkymo/app/utils/my_dialogs.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class HomeController extends GetxController with StateMixin<String> {
@@ -22,9 +23,10 @@ class HomeController extends GetxController with StateMixin<String> {
           .fetchUserData(userId: idPeternak, accessToken: accessToken);
     }
     fetchTransactions();
-    isLoading.value = false;
+    // isLoading.value = false;
   }
 
+  Rx<RxStatus> homeStatus = RxStatus.loading().obs;
   RxBool isLoading = true.obs;
   Rx<String?> userName = getUserName().obs;
 
@@ -60,12 +62,18 @@ class HomeController extends GetxController with StateMixin<String> {
             .where((transaction) => transaction != null)
             .map((transaction) => transaction!)
             .toList();
+        homeStatus.value = RxStatus.success();
       }
     } catch (e) {
+      homeStatus.value = RxStatus.error(e.toString());
       Log.cat.e(e);
-
-      Get.defaultDialog(
-          title: "Fetch Transaction Error", middleText: e.toString());
+      // MyDialogs.error(msg: e.toString());
+      // Get.defaultDialog(
+      //     title: "Fetch Transaction Error", middleText: e.toString());
     }
+  }
+
+  Future<void> getData() async {
+    fetchTransactions();
   }
 }

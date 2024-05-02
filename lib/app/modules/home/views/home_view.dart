@@ -1,3 +1,4 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
@@ -13,16 +14,62 @@ import 'widget/row_time_picker_widget.dart';
 import 'package:skeletonizer/skeletonizer.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+  const HomeView({Key? key});
+
   @override
   Widget build(BuildContext context) {
-    // final lastTransaction = controller.transactionDataList.last;
-    // final dateFormatter = DateFormat('dd  MMMM  yyyy');
-    // final timeFormatter = DateFormat('HH:mm');
-
     return Scaffold(
       backgroundColor: tBackgroundColor,
-      body: CustomScrollView(
+      body: Obx(() {
+        if (controller.homeStatus.value.isLoading) {
+          return _buildLoadingView(context);
+        } else if (controller.homeStatus.value.isError) {
+          return _buildErrorView(context);
+        } else if (controller.homeStatus.value.isSuccess) {
+          return _buildSuccessView(context);
+        }
+        return const SizedBox();
+      }),
+    );
+  }
+
+  Widget _buildLoadingView(BuildContext context) {
+    return const Center(child: CircularProgressIndicator());
+  }
+
+  Widget _buildErrorView(BuildContext context) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      // You can't show dialog inside build method directly.
+      // We use addPostFrameCallback to show the dialog after the build is complete.
+      AwesomeDialog(
+        context: context,
+        dialogType: DialogType.error,
+        title: "Terjadi Kesalahan",
+        desc: controller.homeStatus.value.errorMessage,
+        btnOkText: "REFRESH",
+        btnOkOnPress: () {
+          controller.getData();
+        },
+      ).show();
+    });
+    return GestureDetector(
+      onTap: () => controller.getData(),
+      child: Center(
+        child: Text(
+          "Terjadi Kesalahan, coba tekan layar untuk memuat ulang",
+          style: TextStyle(
+              fontFamily: "Poppins",
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildSuccessView(BuildContext context) {
+    return RefreshIndicator(
+      onRefresh: controller.getData,
+      child: CustomScrollView(
         slivers: [
           SliverAppBar.medium(
             backgroundColor: tBackgroundColor,
@@ -67,7 +114,7 @@ class HomeView extends GetView<HomeController> {
                                 .pOnly(bottom: 30)
                                 .safeArea(),
                             Obx(() {
-                              if (controller.isLoading.value) {
+                              if (controller.homeStatus.value.isLoading) {
                                 return Skeletonizer(
                                   enabled: controller.isLoading.value,
                                   child: HomeCardWidget(
@@ -119,7 +166,9 @@ class HomeView extends GetView<HomeController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const HomeBodyTitle().pOnly(bottom: 5),
-                      RowTimepicker(controller: controller),
+                      RowTimepicker(
+                        controller: controller,
+                      ),
                     ],
                   ),
                 ),
@@ -127,7 +176,7 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           Obx(() {
-            if (controller.isLoading.value) {
+            if (controller.homeStatus.value.isLoading) {
               return SliverFillRemaining(
                 child: VxShimmer(
                   count: 5,

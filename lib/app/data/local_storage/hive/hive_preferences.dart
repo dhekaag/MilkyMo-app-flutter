@@ -16,6 +16,14 @@ bool getRememberMe() {
   return Hive.box("presentation").get("rememberMe", defaultValue: false);
 }
 
+Future<void> saveDeviceid(String? deviceId) async {
+  await Hive.box("userData").put("device_id", deviceId);
+}
+
+String? getDeviceid() {
+  return Hive.box("userData").get("device_id", defaultValue: null);
+}
+
 Future<void> saveUid(String? uid) async {
   await Hive.box("userData").put("uid", uid);
 }

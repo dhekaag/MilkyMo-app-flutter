@@ -12,8 +12,9 @@ import 'package:get/instance_manager.dart';
 import 'package:milkymo/app/data/local_storage/hive/hive_preferences.dart';
 import 'package:milkymo/app/data/services/dio/dio_interceptor.dart';
 import 'package:milkymo/app/routes/app_pages.dart';
-import 'package:milkymo/app/data/services/dio/custom_exception.dart';
 import 'package:milkymo/app/utils/logger.dart';
+import 'package:milkymo/app/utils/my_dialogs.dart';
+import 'package:onesignal_flutter/onesignal_flutter.dart';
 
 class AuthRepository extends GetxController {
   static AuthRepository get instance => Get.find();
@@ -39,9 +40,15 @@ class AuthRepository extends GetxController {
 
   final _dio = DioInterceptor().dio;
   Future<String?> login(String idPeternak, String password) async {
+    final deviceId = await OneSignal.User.getOnesignalId();
+
     try {
       Response response = await _dio.post("users/login",
-          data: json.encode({"id_peternak": idPeternak, "password": password}));
+          data: json.encode({
+            "id_peternak": idPeternak,
+            "password": password,
+            "device_id": deviceId
+          }));
       // Check if response is successful (status code between 200 and 300)
 
       if (response.statusCode! >= 200 && response.statusCode! < 300) {
@@ -58,19 +65,22 @@ class AuthRepository extends GetxController {
           Log.cat.i("refresh token : ${response.data["data"]["refreshToken"]}");
           Log.cat.i("id peternak : $idPeternak");
         }
+        await OneSignal.User.addAlias("id_peternak", idPeternak);
         return response.data["data"]["accessToken"];
-      } else if (response.statusCode! >= 400 && response.statusCode! < 500) {
-        throw "Invalid username or password";
+      } else if (response.statusCode == 401) {
+        throw "ID peternak atau password salah";
+      } else if (response.data["message"] == "already exists") {
+        throw "Akun sudah digunakan, coba akun lain";
       } else if (response.statusCode! >= 500 && response.statusCode! < 600) {
-        throw "Internal Server Error";
+        throw "Terjadi kesalahan, coba lagi";
       }
       // return null;
     } on DioException catch (error) {
       // ! if error from Exception
       Log.cat.e(error);
-      final errMessage = CustomException.fromDioException(error);
+      // final errMessage = CustomException.fromDioException(error);
       // Get.defaultDialog(title: "Login Error", middleText: errMessage.message);
-      throw errMessage.message;
+      throw "Terjadi kesalahan, coba lagi";
     }
     return null;
   }
@@ -106,26 +116,35 @@ class AuthRepository extends GetxController {
     } on DioException catch (e) {
       // ! if error from Exception
       Log.cat.e(e);
-      final errMessage = CustomException.fromDioException(e);
-      return errMessage.message;
+      // final errMessage = CustomException.fromDioException(e);
+      throw "Terjadi kesalahan, coba lagi";
     }
     return null;
   }
 
-  void logout() async {
+  Future<bool> logout() async {
     try {
-      // * clear the token from the local storage
-      await deleteAllUserData();
-      Get.offAllNamed(Routes.LOGIN);
+      final userId = getIdPeternak();
+      final deviceId = await OneSignal.User.getOnesignalId();
+      Response logoutRes = await _dio.post("users/logout",
+          data: json.encode({"id_peternak": userId, "device_id": deviceId}));
+      if (logoutRes.statusCode == 200) {
+        // * clear the token from the local storage
+        await deleteAllUserData();
+        Get.offAllNamed(Routes.LOGIN);
+        if (kDebugMode) {
+          Log.cat.i("access token = $getAccessToken()");
+          Log.cat.i("refresh token = $getRefreshToken()");
+          Log.cat.i("id peternak = $getIdPeternak()");
+        }
 
-      if (kDebugMode) {
-        Log.cat.i("access token = $getAccessToken()");
-        Log.cat.i("refresh token = $getRefreshToken()");
-        Log.cat.i("id peternak = $getIdPeternak()");
+        return true;
       }
+      return false;
     } catch (e) {
       log(e.toString());
-      throw e.toString();
+      MyDialogs.error(msg: "Terjadi kesalahan, coba lagi");
+      return false;
     }
   }
 }

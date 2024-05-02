@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "421397714218",
+    "project_id": "milkymo",
+    "storage_bucket": "milkymo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:421397714218:android:bde828401020f526d63a53",
+        "android_client_info": {
+          "package_name": "com.milkymo.milky_mo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1jXAHseSImZr6IA_yOpvBvdq20k7qaC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
